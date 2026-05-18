@@ -1,0 +1,34 @@
+services:
+  - type: web
+    name: inferox-core-engine
+    runtime: node
+    plan: starter
+    region: oregon
+    branch: main
+    buildCommand: npm ci && npx prisma generate && npx prisma db push && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
+      - key: RESEND_API_KEY
+        sync: false           # ADD IN RENDER DASHBOARD
+      - key: RESEND_FROM_EMAIL
+        sync: false
+      - key: OWNER_EMAIL
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: inferox-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: OTP_TTL_SECONDS
+        value: "600"
+      - key: NEXT_PUBLIC_APP_URL
+        sync: false
+databases:
+  - name: inferox-db
+    plan: free
+    region: oregon
