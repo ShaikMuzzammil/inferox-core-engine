@@ -1,0 +1,6 @@
+// app/dashboard/performance/page.tsx
+'use client';
+import { Gauge } from 'lucide-react';
+export default function P(){return(<div className="space-y-8"><h1 className="text-3xl font-bold flex items-center gap-3"><Gauge className="text-fuchsia-400"/>Performance Engineering</h1>
+<div className="glass rounded-2xl p-6"><h2 className="font-bold mb-4">Flame Graph</h2><div className="space-y-1 font-mono text-xs">{[['main',100,'cyan'],['inferex_serve',92,'violet'],['model_forward',78,'pink'],['cuda_kernel',62,'amber'],['memcpy_h2d',18,'emerald']].map(([n,w,c]:any)=><div key={n} className={`h-6 rounded flex items-center px-3 bg-${c}-500/40`} style={{width:`${w}%`}}>{n} · {w}%</div>)}</div></div>
+<div className="glass rounded-2xl p-6"><h2 className="font-bold mb-4">Roofline Model</h2><svg viewBox="0 0 300 200" className="w-full"><line x1="0" y1="200" x2="300" y2="0" stroke="#22d3ee" strokeWidth="1"/><line x1="100" y1="50" x2="300" y2="50" stroke="#8b5cf6" strokeWidth="1"/>{[[50,150],[80,120],[150,80],[200,55]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="5" fill="#ec4899"/>)}</svg><p className="text-xs text-slate-400 mt-2">Memory-bound kernels detected: enable prefetching.</p></div></div>);}

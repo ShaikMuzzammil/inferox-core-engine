@@ -1,0 +1,6 @@
+// app/dashboard/verification/page.tsx
+'use client';
+import { CheckCircle2 } from 'lucide-react';
+export default function P(){return(<div className="space-y-8"><h1 className="text-3xl font-bold flex items-center gap-3"><CheckCircle2 className="text-sky-400"/>Verification</h1>
+<div className="grid lg:grid-cols-2 gap-6"><div className="glass rounded-2xl p-6"><h2 className="font-bold mb-4">SLO Validator</h2><div className="text-center"><div className="text-6xl font-bold gradient-text">8.2ms</div><div className="text-sm text-slate-400 mt-2">p99 latency · SLO: &lt; 10ms · ✓ Passing</div><div className="mt-4 px-3 py-2 bg-emerald-500/10 border border-emerald-500/30 rounded text-xs text-emerald-300">Statistical test: p=0.998 (99.8% confidence)</div></div></div>
+<div className="glass rounded-2xl p-6"><h2 className="font-bold mb-4">Fairness Tester (KS-test)</h2><svg viewBox="0 0 200 100" className="w-full"><path d="M 0 80 Q 50 20 100 50 T 200 60" fill="none" stroke="#22d3ee" strokeWidth="2"/><path d="M 0 75 Q 50 25 100 48 T 200 62" fill="none" stroke="#8b5cf6" strokeWidth="2"/></svg><div className="text-xs text-slate-400 mt-2">D=0.12, p=0.34 — distributions equivalent ✓</div></div></div></div>);}
