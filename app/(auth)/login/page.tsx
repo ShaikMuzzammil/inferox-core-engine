@@ -1,12 +1,12 @@
 'use client';
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Mail, KeyRound, ShieldCheck, ArrowRight, CheckCircle2 } from 'lucide-react';
 import HomeButton from '@/components/HomeButton';
 
-export default function LoginPage() {
+function LoginPageContent() {
   const [step,setStep] = useState(1);
   const [email,setEmail] = useState('');
   const [name,setName] = useState('');
@@ -99,5 +99,17 @@ export default function LoginPage() {
         </AnimatePresence>
       </motion.div>
     </main>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center px-6 grid-bg">
+        <div className="text-slate-400 text-sm">Loading secure gateway...</div>
+      </div>
+    }>
+      <LoginPageContent />
+    </Suspense>
   );
 }
